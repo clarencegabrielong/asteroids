@@ -10,7 +10,7 @@ I built this project to practice Python, Object-Oriented Programming, and game d
 Like in the original, this game features a player-controlled ship, randomly spawning asteroids, and shooting mechanics.
 
 ## Installation
-1. Ensure you have [Python 3](https://www.python.org/) installed.
+1. Ensure you have <a href="https://www.python.org/" target="_blank">Python 3</a> installed.
 2. Clone this repository:
    ```bash
    git clone https://github.com/clarencegabrielong/asteroids.git
