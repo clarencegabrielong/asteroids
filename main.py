@@ -104,10 +104,10 @@ def main():
             for asteroid in asteroids:
                 if player.collides_with(asteroid):
                     audio.play(audio.ship_explosion_sound)
-                    audio.stop_music()
-                    audio.play_music("assets/background_music/Across the Stars (Love Theme from Star Wars_ Attack of the Clones).mp3")
+                    audio.play_music(audio.gaemover_music)
                     if game_over(screen, score):
                         restart = True
+                        audio.play_music(audio.background_music)
                     else:
                         return
                     
