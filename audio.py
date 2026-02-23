@@ -10,9 +10,9 @@ def init():
     try:
         pygame.mixer.init()
         shoot_sound = pygame.mixer.Sound("assets/sound_effects/mixkit-short-laser-gun-shot-1670.wav")
-        asteroid_explosion_sound = pygame.mixer.Sound("assets/asteroid_explosion.ogg")
-        ship_explosion_sound = pygame.mixer.Sound("assets/ship_explosion.ogg")
-        pygame.mixer.music.load("assets/background_music.ogg")
+        asteroid_explosion_sound = pygame.mixer.Sound("assets/sound_effects/mixkit-arcade-game-explosion-2759.wav")
+        ship_explosion_sound = pygame.mixer.Sound("assets/sound_effects/mixkit-explosion-hit-1704.wav")
+        pygame.mixer.music.load("assets/background_music/Star Wars VI Return of The Jedi Soundtrack - The Battle of Endor 1.mp3")
         pygame.mixer.music.play(-1)
         AUDIO_ENABLED = True
     except pygame.error:

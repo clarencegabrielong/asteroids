@@ -103,6 +103,7 @@ def main():
 
             for asteroid in asteroids:
                 if player.collides_with(asteroid):
+                    audio.play(audio.ship_explosion_sound)
                     if game_over(screen, score):
                         restart = True
                     else:
@@ -110,6 +111,7 @@ def main():
                     
                 for shot in shots:
                     if asteroid.collides_with(shot):
+                        audio.play(audio.asteroid_explosion_sound)
                         score += destroyed_asteroid(asteroid)
                         asteroid.split()
                         shot.kill()
