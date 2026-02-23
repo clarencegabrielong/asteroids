@@ -9,17 +9,17 @@ from player import Player
 from shot import Shot
 
 def game_over(screen, final_score):
-    font = pygame.font.Font(FONT_PATH, 60)
-    text = font.render("GAME OVER", True, (255, 255, 255))
-    text_rect = text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 - 65))
+    game_over_font = pygame.font.Font(FONT_PATH, 60)
+    game_over_text = game_over_font.render("GAME OVER", True, (255, 255, 255))
+    game_over_rect = game_over_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 - 65))
 
     score_font = pygame.font.Font(FONT_PATH, 40)
-    score_text = score_font.render(f"Score: {final_score}", True, (255, 255, 255))
+    score_text = score_font.render(f"Score:{final_score}", True, (255, 255, 255))
     score_rect = score_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 5))    
 
     prompt_font = pygame.font.Font(FONT_PATH, 28)
     prompt = prompt_font.render("Press R to Restart or Q to Quit", True, (255, 255, 255))
-    prompt_rect = prompt.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 60))
+    prompt_rect = prompt.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 65))
     
     while True:
         for event in pygame.event.get():
@@ -32,7 +32,7 @@ def game_over(screen, final_score):
                     return False 
         
         screen.fill((0, 0, 0))
-        screen.blit(text, text_rect) # name better?
+        screen.blit(game_over_text, game_over_rect)
         screen.blit(score_text, score_rect)
         screen.blit(prompt, prompt_rect)
         pygame.display.flip()
@@ -54,6 +54,16 @@ def main():
 
     pygame.init()
 
+    
+    try:
+        pygame.mixer.init()
+        pygame.mixer.music.load("assets/background_music/Star Wars VI Return of The Jedi Soundtrack - The Battle of Endor 1.mp3")
+        pygame.mixer.music.play(-1)
+        AUDIO_ENABLED = True
+    except pygame.error:
+        print("No audio device found, running without sound")
+        AUDIO_ENABLED = False
+
     score_font = pygame.font.Font(FONT_PATH, 24)
 
     pygame.display.set_caption("Asteroids")
@@ -61,6 +71,9 @@ def main():
     pygame.display.set_icon(icon)
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+    background = pygame.image.load("assets/background.jpg").convert()
+    background = pygame.transform.scale(background, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
     clock = pygame.time.Clock()
 
@@ -92,7 +105,7 @@ def main():
                 
             updatable.update(dt)
 
-            screen.fill("black")
+            screen.blit(background, (0, 0))
 
             for asteroid in asteroids:
                 if player.collides_with(asteroid):
