@@ -1,4 +1,5 @@
 import pygame
+import audio
 from constants import *
 from circleshape import CircleShape
 from shot import Shot
@@ -50,7 +51,7 @@ class Player(CircleShape):
             return
         else: 
             self.cooldown = PLAYER_SHOOT_COOLDOWN_SECONDS
-        
+            audio.play(audio.shoot_sound)
             shot = Shot(self.position.x, self.position.y)
             unit_vector = pygame.Vector2(0, -1)
             rotated_vector = unit_vector.rotate(self.rotation)

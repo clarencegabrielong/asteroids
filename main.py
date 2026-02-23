@@ -1,4 +1,6 @@
-import pygame 
+import pygame
+
+import audio
 
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
@@ -54,15 +56,7 @@ def main():
 
     pygame.init()
 
-    
-    try:
-        pygame.mixer.init()
-        pygame.mixer.music.load("assets/background_music/Star Wars VI Return of The Jedi Soundtrack - The Battle of Endor 1.mp3")
-        pygame.mixer.music.play(-1)
-        AUDIO_ENABLED = True
-    except pygame.error:
-        print("No audio device found, running without sound")
-        AUDIO_ENABLED = False
+    audio.init()
 
     score_font = pygame.font.Font(FONT_PATH, 24)
 
