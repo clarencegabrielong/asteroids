@@ -9,6 +9,29 @@ from logger import log_event
 from player import Player
 from shot import Shot
 
+def game_over(screen):
+    font = pygame.font.Font(None, 74)
+    text = font.render("GAME OVER", True, (255, 255, 255))
+    text_rect = text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+    
+    prompt_font = pygame.font.Font(None, 36)
+    prompt = prompt_font.render("Press R to Restart or Q to Quit", True, (255, 255, 255))
+    prompt_rect = prompt.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2 + 50))
+    
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    return True  
+                if event.key == pygame.K_q:
+                    return False 
+        
+        screen.fill((0, 0, 0))
+        screen.blit(text, text_rect)
+        screen.blit(prompt, prompt_rect)
+        pygame.display.flip()
 
 def main():
 
@@ -43,7 +66,7 @@ def main():
 
 
 
-    while(True):
+    while True:
         log_state()
 
         for event in pygame.event.get():
@@ -56,10 +79,10 @@ def main():
 
         for asteroid in asteroids:
             if player.collides_with(asteroid):
-                log_event("player_hit")
-                print("Game over!")
-                sys.exit()
-            
+                if game_over(screen):
+                    return main()
+                else:
+                    return
             for shot in shots:
                 if asteroid.collides_with(shot):
                     log_event("asteroid_shot")
@@ -77,3 +100,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    pygame.quit()
