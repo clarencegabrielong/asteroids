@@ -1,5 +1,4 @@
 import pygame 
-import sys
 
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
@@ -61,7 +60,7 @@ def main():
     icon = pygame.image.load("assets/icon.png")
     pygame.display.set_icon(icon)
 
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.SCALED)
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     clock = pygame.time.Clock()
 
