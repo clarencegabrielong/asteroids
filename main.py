@@ -18,6 +18,10 @@ def main():
 
     pygame.init()
 
+    pygame.display.set_caption("Asteroids")
+    icon = pygame.image.load("assets/icon.png")
+    pygame.display.set_icon(icon)
+
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
