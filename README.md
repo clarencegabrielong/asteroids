@@ -2,7 +2,7 @@
 
 A classic arcade-style Asteroids game built using Python and Pygame.
 
-<img src="assets/screenshot.png" width="700">
+<img src="docs/asteroids_demo.gif" width="600"/>
 
 ## Description
 
